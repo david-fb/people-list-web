@@ -10,6 +10,10 @@
     "lint": "npx eslint . --ext .js,.jsx"
   },
   "dependencies": {
+    "@emotion/react": "^11.10.4",
+    "@emotion/styled": "^11.10.4",
+    "@mui/material": "^5.10.8",
+    "@mui/x-data-grid": "^5.17.6",
     "@reduxjs/toolkit": "^1.8.5",
     "axios": "1.1.0",
     "eslint-plugin-react": "7.31.8",

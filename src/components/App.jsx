@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../styles/App.css';
 import { Link } from 'react-router-dom';
 import { getAll } from '../services/api/person';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectRefreshToken, userLogOut } from '../reducers/userSlice';
+import Table from './Table';
 
 function App() {
   const accessToken = useSelector(selectRefreshToken);
@@ -13,21 +14,22 @@ function App() {
   const handleGetPeople = async () => {
     try {
       const res = await getAll(accessToken);
-      console.log(res);
       setPeople(res);
     } catch (error) {
       dispatch(userLogOut());
     }
   };
 
+  useEffect(() => {
+    handleGetPeople();
+  }, []);
+
   return (
     <div className="App">
       <h1>People List</h1>
       <Link to="/login">Home</Link>
       <button onClick={handleGetPeople}>Get List</button>
-      {people.map((person) => (
-        <p key={person.id}>{person.hobbie}</p>
-      ))}
+      <Table peopleData={people} />
     </div>
   );
 }
