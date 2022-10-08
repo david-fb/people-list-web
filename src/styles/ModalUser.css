@@ -1,6 +1,6 @@
 .ModalUser {
     position: relative;
-    background: #fff;
+    background: #f6f9ff;
     width: 90%;
     max-width: 500px;
     margin: 0 auto;
@@ -16,7 +16,24 @@
     position: absolute;
     top: 0;
     right: 0;
+    background: none;
+    border: none;
 }
+
+.CloseButton svg{
+    fill: red;
+}
+
+.CloseButton:hover svg{
+    fill: red;
+    transform: scale(1.1);
+}
+
+.CloseButton:hover {
+    background: none;
+    border: none;
+}
+
 
 .ModalUser form {
     width: 100%;
@@ -53,4 +70,13 @@
     display: flex;
     justify-content: center;
     gap: 8px;
+}
+
+.CancelButton {
+    background: red;
+}
+
+.CancelButton:hover {
+    color: red;
+    border-color: red;
 }

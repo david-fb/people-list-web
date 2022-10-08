@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { selectRefreshToken, userLogOut } from '../reducers/userSlice';
 import { createPerson, updateById } from '../services/api/person';
 import { toast } from 'react-toastify';
+import DeleteIcon from '../assets/DeleteIcon';
 
 import '../styles/ModalUser.css';
 
@@ -88,7 +89,7 @@ const ModalUser = forwardRef((props, ref) => {
   return (
     <div tabIndex={props.tabIndex} onFocus={props.onFocus} ref={ref} className="ModalUser">
       <button className="CloseButton" onClick={handleClose}>
-        Close
+        <DeleteIcon />
       </button>
       <h2>{title}</h2>
       <form ref={form} onSubmit={handleSubmit}>
@@ -120,7 +121,7 @@ const ModalUser = forwardRef((props, ref) => {
           </label>
         </div>
         <div className="buttonsContainer">
-          <button onClick={handleClose} type="button">
+          <button className="CancelButton" onClick={handleClose} type="button">
             Cancelar
           </button>
           <button>Guardar</button>

@@ -70,6 +70,14 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
+input, select {
+  border: none;
+  padding: 8px 16px;
+  border-radius: 5px;
+  border: 1px solid #e3ecff;
+  background: #fff;
+}
+
 /* @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
