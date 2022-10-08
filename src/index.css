@@ -76,6 +76,7 @@ input, select {
   border-radius: 5px;
   border: 1px solid #e3ecff;
   background: #fff;
+  color: #000;
 }
 
 /* @media (prefers-color-scheme: light) {
