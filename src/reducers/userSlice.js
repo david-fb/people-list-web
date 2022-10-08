@@ -1,6 +1,14 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const USER_STATE = window.localStorage.getItem('user') ? JSON.parse(window.localStorage.getItem('user')) : {};
+const GET_USER_STATE = () => {
+  try {
+    return window.localStorage.getItem('user') ? JSON.parse(window.localStorage.getItem('user')) : {};
+  } catch (error) {
+    return {};
+  }
+};
+
+const USER_STATE = GET_USER_STATE();
 
 const initialState = {
   isLoggedIn: USER_STATE.isLoggedIn ?? false,

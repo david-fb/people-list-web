@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import '../styles/App.css';
-import { Link } from 'react-router-dom';
 import { getAll } from '../services/api/person';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectRefreshToken, userLogOut } from '../reducers/userSlice';
@@ -26,8 +25,10 @@ function App() {
 
   return (
     <main className="App">
+      <nav>
+        <button onClick={() => dispatch(userLogOut())}>Log Out</button>
+      </nav>
       <h1>Lista de Personas</h1>
-      <Link to="/login">Home</Link>
       <Table peopleData={people} refreshPeople={handleGetPeople} />
     </main>
   );

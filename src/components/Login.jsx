@@ -1,14 +1,13 @@
 import React, { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { logIn } from '../services/api/auth';
-import { userLogIn, userLogOut, selectIsUserLoggedIn } from '../reducers/userSlice';
-import { Link, useNavigate } from 'react-router-dom';
+import { userLogIn } from '../reducers/userSlice';
+import { useNavigate } from 'react-router-dom';
 
 export default function Login() {
   const [username, setUsername] = useState('test');
   const [password, setPassword] = useState('test');
 
-  const isLoggedIn = useSelector(selectIsUserLoggedIn);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -26,7 +25,6 @@ export default function Login() {
 
   return (
     <div>
-      <Link to="/">Home</Link>
       <form onSubmit={handleSubmit}>
         <label>
           username:
@@ -38,9 +36,6 @@ export default function Login() {
         </label>
         <button>Log In</button>
       </form>
-
-      <p>isLoggedIn: {String(isLoggedIn)}</p>
-      <button onClick={() => dispatch(userLogOut())}>Log Out</button>
     </div>
   );
 }
