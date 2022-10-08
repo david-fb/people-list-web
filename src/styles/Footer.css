@@ -1,0 +1,26 @@
+.Footer *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.Footer {
+    display: flex;
+    margin-top: auto;
+    align-items: center;
+    justify-content: center;
+    padding: 16px 8px;
+    flex-direction: column;
+}
+
+.Footer div{
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.Footer div ul {
+    display: flex;
+    gap: 8px;
+    list-style: none;
+}

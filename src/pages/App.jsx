@@ -7,6 +7,7 @@ import Table from '../components/Table';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
 import LogOutIcon from '../assets/LogOutIcon';
+import Footer from '../components/Footer';
 
 function App() {
   const accessToken = useSelector(selectRefreshToken);
@@ -38,6 +39,7 @@ function App() {
         <Table peopleData={people} refreshPeople={handleGetPeople} />
         <ToastContainer />
       </section>
+      <Footer />
     </main>
   );
 }

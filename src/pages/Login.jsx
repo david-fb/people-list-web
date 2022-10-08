@@ -4,6 +4,7 @@ import { logIn } from '../services/api/auth';
 import { userLogIn } from '../reducers/userSlice';
 import { useNavigate } from 'react-router-dom';
 import '../styles/Login.css';
+import Footer from '../components/Footer';
 
 export default function Login() {
   const [username, setUsername] = useState('');
@@ -38,6 +39,7 @@ export default function Login() {
         </label>
         <button>Iniciar sesión</button>
       </form>
+      <Footer />
     </main>
   );
 }
