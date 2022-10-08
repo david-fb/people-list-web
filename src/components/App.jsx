@@ -4,6 +4,8 @@ import { getAll } from '../services/api/person';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectRefreshToken, userLogOut } from '../reducers/userSlice';
 import Table from './Table';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.min.css';
 
 function App() {
   const accessToken = useSelector(selectRefreshToken);
@@ -30,6 +32,7 @@ function App() {
       </nav>
       <h1>Lista de Personas</h1>
       <Table peopleData={people} refreshPeople={handleGetPeople} />
+      <ToastContainer />
     </main>
   );
 }

@@ -1,8 +1,9 @@
 /* eslint-disable react/prop-types */
-import React, { forwardRef, useRef, useState } from 'react';
+import React, { forwardRef, useRef, useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectRefreshToken, userLogOut } from '../reducers/userSlice';
 import { createPerson, updateById } from '../services/api/person';
+import { toast } from 'react-toastify';
 
 import '../styles/ModalUser.css';
 
@@ -17,6 +18,28 @@ const ModalUser = forwardRef((props, ref) => {
   const title = isEdit ? 'Actualizar' : 'Agregar';
 
   const [errors, setErrors] = useState({});
+
+  const showSuccessAlert = (message) =>
+    toast.success(message, {
+      position: 'top-right',
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+
+  const showErrorAlert = (message) =>
+    toast.error(message, {
+      position: 'top-right',
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
 
   const handleSubmit = async (evt) => {
     setErrors({});
@@ -35,10 +58,12 @@ const ModalUser = forwardRef((props, ref) => {
       if (isEdit) {
         await updateById(accessToken, person.id, personData);
         refreshPeople();
+        showSuccessAlert('Item Actualizado!');
         handleClose();
       } else {
         await createPerson(accessToken, personData);
         refreshPeople();
+        showSuccessAlert('Item Creado!');
         handleClose();
       }
     } catch (error) {
@@ -49,6 +74,16 @@ const ModalUser = forwardRef((props, ref) => {
       }
     }
   };
+
+  useEffect(() => {
+    if (errors) {
+      Object.keys(errors).forEach((key) =>
+        errors[key].forEach((item) => {
+          showErrorAlert(item);
+        })
+      );
+    }
+  }, [errors]);
 
   return (
     <div tabIndex={props.tabIndex} onFocus={props.onFocus} ref={ref} className="ModalUser">
@@ -84,7 +119,6 @@ const ModalUser = forwardRef((props, ref) => {
             <input type="text" name="hobbie" defaultValue={person.hobbie} required />
           </label>
         </div>
-        <div>Error: {Object.keys(errors).map((key) => errors[key].map((item, index) => <p key={`error-${index}`}>{item}</p>))}</div>
         <div className="buttonsContainer">
           <button onClick={handleClose} type="button">
             Cancelar
