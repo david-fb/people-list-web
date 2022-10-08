@@ -35,7 +35,7 @@ export default function Login() {
         </label>
         <label>
           Contraseña:
-          <input type="text" value={password} onChange={(e) => setPassword(e.target.value)} />
+          <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
         </label>
         <button>Iniciar sesión</button>
       </form>
