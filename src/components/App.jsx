@@ -25,12 +25,11 @@ function App() {
   }, []);
 
   return (
-    <div className="App">
-      <h1>People List</h1>
+    <main className="App">
+      <h1>Lista de Personas</h1>
       <Link to="/login">Home</Link>
-      <button onClick={handleGetPeople}>Get List</button>
-      <Table peopleData={people} />
-    </div>
+      <Table peopleData={people} refreshPeople={handleGetPeople} />
+    </main>
   );
 }
 

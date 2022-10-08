@@ -1,0 +1,56 @@
+.ModalUser {
+    position: relative;
+    background: #fff;
+    width: 90%;
+    max-width: 500px;
+    margin: 0 auto;
+    margin-top: 30px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 5px;
+}
+
+.CloseButton {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.ModalUser form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.inputsContainer {
+    display: grid;
+    grid-template-columns: repeat(auto-fill , minmax(200px, 240px));
+    justify-content: center;
+    gap: 16px;
+}
+
+.inputsContainer label {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Chrome, Safari, Edge, Opera */
+.inputsContainer input::-webkit-outer-spin-button,
+.inputsContainer input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+.inputsContainer input[type=number] {
+  -moz-appearance: textfield;
+}
+
+.buttonsContainer {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+}

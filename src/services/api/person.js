@@ -10,6 +10,18 @@ export const getAll = async (token) => {
   return res.data;
 };
 
+export const createPerson = async (token, data) => {
+  const { access } = await refreshToken(token);
+  const res = await axios.post(
+    END_POINTS.person.create(),
+    { ...data },
+    {
+      headers: { Authorization: `Bearer ${access}`, 'Content-Type': 'application/json' },
+    }
+  );
+  return res.data;
+};
+
 export const getById = async (token, id) => {
   const { access } = await refreshToken(token);
   const res = await axios.get(END_POINTS.person.getById(id), {
@@ -20,9 +32,9 @@ export const getById = async (token, id) => {
 
 export const updateById = async (token, id, changes) => {
   const { access } = await refreshToken(token);
-  const res = await axios.post(
+  const res = await axios.put(
     END_POINTS.person.updateById(id),
-    { changes },
+    { ...changes },
     {
       headers: { Authorization: `Bearer ${access}` },
     }
