@@ -3,6 +3,11 @@ import React, { useState } from 'react';
 import { DataGrid } from '@mui/x-data-grid';
 import Modal from '@mui/material/Modal';
 import ModalUser from './ModalUser';
+import { useSelector, useDispatch } from 'react-redux';
+import { selectRefreshToken, userLogOut } from '../reducers/userSlice';
+import { deleteById } from '../services/api/person';
+import Swal from 'sweetalert2';
+import 'sweetalert2/src/sweetalert2.scss';
 
 export default function Table({ peopleData, refreshPeople }) {
   const [pageSize, setPageSize] = useState(5);
@@ -30,7 +35,7 @@ export default function Table({ peopleData, refreshPeople }) {
       headerName: 'Acciones',
       renderCell: (params) => (
         <div>
-          <button onClick={() => console.log(params.row.id)}>Delete</button>
+          <button onClick={() => handleDeleteClick(params)}>Delete</button>
           <button onClick={() => handleEditClick(params)}>Edit</button>
         </div>
       ),
@@ -42,6 +47,38 @@ export default function Table({ peopleData, refreshPeople }) {
     setSelectedItem(params.row);
     setIsEdit(true);
     handleOpen();
+  };
+
+  const token = useSelector(selectRefreshToken);
+  const dispatch = useDispatch();
+
+  const handleDeleteClick = (params) => {
+    const itemId = params.row.id;
+    Swal.fire({
+      title: '¿Estás seguro?',
+      text: 'No podrás revertir esto!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Sí, eliminar!',
+      cancelButtonText: 'Cancelar',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        deleteById(token, itemId)
+          .then(() => {
+            Swal.fire('Eliminado!', 'El item ha sido eliminado.', 'success');
+            refreshPeople();
+          })
+          .catch(() => {
+            Swal.fire({
+              icon: 'error',
+              title: 'Oops...',
+              text: 'Algo salió mal!',
+            }).then(() => dispatch(userLogOut()));
+          });
+      }
+    });
   };
 
   return (
