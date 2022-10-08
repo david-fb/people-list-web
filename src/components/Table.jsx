@@ -7,7 +7,11 @@ import { useSelector, useDispatch } from 'react-redux';
 import { selectRefreshToken, userLogOut } from '../reducers/userSlice';
 import { deleteById } from '../services/api/person';
 import Swal from 'sweetalert2';
+import AddIcon from '../assets/AddIcon';
+import DeleteIcon from '../assets/DeleteIcon';
+import EditIcon from '../assets/EditIcon';
 import 'sweetalert2/src/sweetalert2.scss';
+import '../styles/Table.css';
 
 export default function Table({ peopleData, refreshPeople }) {
   const [pageSize, setPageSize] = useState(5);
@@ -34,12 +38,16 @@ export default function Table({ peopleData, refreshPeople }) {
       field: 'action',
       headerName: 'Acciones',
       renderCell: (params) => (
-        <div>
-          <button onClick={() => handleDeleteClick(params)}>Delete</button>
-          <button onClick={() => handleEditClick(params)}>Edit</button>
+        <div className="ActionButtons">
+          <button className="DeleteButton" onClick={() => handleDeleteClick(params)}>
+            Delete <DeleteIcon />
+          </button>
+          <button onClick={() => handleEditClick(params)}>
+            Edit <EditIcon />
+          </button>
         </div>
       ),
-      width: 150,
+      width: 210,
     },
   ];
 
@@ -82,12 +90,14 @@ export default function Table({ peopleData, refreshPeople }) {
   };
 
   return (
-    <section>
+    <section className="Table__container">
       <Modal open={open} onClose={handleClose} aria-labelledby="modal-user" aria-describedby="modal-user-save-edit">
         <ModalUser isEdit={isEdit} handleClose={handleClose} person={selectedItem} refreshPeople={refreshPeople} />
       </Modal>
-      <button onClick={handleOpen}>Agregar</button>
-      <div style={{ height: 300, width: '100%' }}>
+      <button className="Button-add" onClick={handleOpen}>
+        Agregar <AddIcon />
+      </button>
+      <div className="Table__wrapper">
         <DataGrid rows={peopleData} columns={columns} rowsPerPageOptions={[5, 10, 25]} pageSize={pageSize} onPageSizeChange={(newPageSize) => setPageSize(newPageSize)} />
       </div>
     </section>

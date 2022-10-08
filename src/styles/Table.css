@@ -1,0 +1,31 @@
+.Table__container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: flex-end;
+    gap: 8px;
+}
+
+.Table__wrapper {
+    width: 100%;
+    height: 500px;
+}
+
+.ActionButtons{
+    display: flex;
+    gap: 8px;
+}
+
+.DeleteButton {
+    background-color: red;
+}
+
+.DeleteButton:hover {
+    background-color: #fff;
+    color: red;
+    border-color: red;
+}
+
+.DeleteButton:hover svg{
+    fill: red;
+}

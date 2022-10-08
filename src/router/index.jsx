@@ -1,7 +1,7 @@
 import React from 'react';
 import { createBrowserRouter } from 'react-router-dom';
-import App from '../components/App';
-import Login from '../components/Login';
+import App from '../pages/App';
+import Login from '../pages/Login';
 import PrivateRoutes from '../utils/PrivateRoutes';
 import LoginRoute from '../utils/LoginRoute';
 

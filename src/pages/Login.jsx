@@ -5,8 +5,8 @@ import { userLogIn } from '../reducers/userSlice';
 import { useNavigate } from 'react-router-dom';
 
 export default function Login() {
-  const [username, setUsername] = useState('test');
-  const [password, setPassword] = useState('test');
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
 
   const dispatch = useDispatch();
   const navigate = useNavigate();

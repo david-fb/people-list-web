@@ -3,9 +3,10 @@ import '../styles/App.css';
 import { getAll } from '../services/api/person';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectRefreshToken, userLogOut } from '../reducers/userSlice';
-import Table from './Table';
+import Table from '../components/Table';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
+import LogOutIcon from '../assets/LogOutIcon';
 
 function App() {
   const accessToken = useSelector(selectRefreshToken);
@@ -27,12 +28,16 @@ function App() {
 
   return (
     <main className="App">
-      <nav>
-        <button onClick={() => dispatch(userLogOut())}>Log Out</button>
+      <nav className="App__nav">
+        <button onClick={() => dispatch(userLogOut())}>
+          Log Out <LogOutIcon />{' '}
+        </button>
       </nav>
-      <h1>Lista de Personas</h1>
-      <Table peopleData={people} refreshPeople={handleGetPeople} />
-      <ToastContainer />
+      <section className="App__content">
+        <h1>Lista de Personas</h1>
+        <Table peopleData={people} refreshPeople={handleGetPeople} />
+        <ToastContainer />
+      </section>
     </main>
   );
 }
